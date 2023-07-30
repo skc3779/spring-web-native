@@ -2,24 +2,25 @@ package com.example.springnativeweb.controller;
 
 
 import com.example.springnativeweb.entity.MovieTicket;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
 public class MovieTicketController {
     @GetMapping("/tickets")
-    public String showMovieTickets(Model model) {
+    public ResponseEntity<List<MovieTicket>> showMovieTickets(Model model) {
         // Sample data - Replace this with your actual data retrieval logic
         List<MovieTicket> movieTickets = getMovieTicketsFromDatabaseOrService();
-
-        model.addAttribute("movieTickets", movieTickets);
-        return "movie_tickets";
+        return new ResponseEntity<>(movieTickets, HttpStatus.OK);
     }
 
     private List<MovieTicket> getMovieTicketsFromDatabaseOrService() {
