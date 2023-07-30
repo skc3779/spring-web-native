@@ -13,7 +13,7 @@ $ ./gradlew.bat bootBuildImage # windows
 ## docker build
 
 ```bash
-$ docker build -t spring-native-web .
+$ docker build -t skc3779/spring-web-native .
 ```
 
 ## docker run
